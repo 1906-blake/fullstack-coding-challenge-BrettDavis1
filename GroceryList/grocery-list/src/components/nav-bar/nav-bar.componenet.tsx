@@ -7,6 +7,7 @@ export class NavComponent extends React.Component {
     return (
       <nav className="navbar navbar-toggleable-md navbar-expand-lg navbar-light bg-light display-front nav-pad">
         <Link to="/lists" className="unset-anchor nav-link">Lists</Link>
+        <Link to="/lists-cards" className="unset-anchor nav-link">Lists Cards</Link>
       </nav>
     );
   }

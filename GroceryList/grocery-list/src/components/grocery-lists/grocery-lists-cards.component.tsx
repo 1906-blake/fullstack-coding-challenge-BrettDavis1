@@ -18,7 +18,7 @@ interface IState {
     totalPages: Number
 }
 
-export default class GetGroceryList extends Component<RouteComponentProps, IState> {
+export default class GetGroceryListCards extends Component<RouteComponentProps, IState> {
     constructor(props: any) {
         super(props);
         this.state = {
@@ -134,29 +134,37 @@ export default class GetGroceryList extends Component<RouteComponentProps, IStat
                         </div></div>
                     </div>
                 </div>
-                <table className="table table-striped table-light">
-                    <thead className="fr-thead">
-                        <tr>
-                            <th scope="col">Name</th>
-                            <th scope="col">Remove</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                    <Container>
+                    <Row>
+                        <Col>
+                            <FaArrowCircleLeft className="clickable"
+                                onClick={() => this.getGroceryListsPages(+this.state.page-1)} />
+                        </Col>
+                        <Col>
+                            {+this.state.page + 1} of {this.state.totalPages}
+                        </Col>
+                        <Col>
+                            <FaArrowCircleRight className="clickable" 
+                                onClick={() => this.getGroceryListsPages(+this.state.page+1)} />
+                        </Col>
+                    </Row>
+                    <Row>
                         {
-                            lists.map(list =>
-                                <tr key={'listId-' + list.listId}>
-                                    <td onClick={() => {this.goToList(list.listId)}}>{list.listName}</td>
-                                    <td>
-                                        <Button className="btn btn-warning" type="button"
+                            this.state.groceryLists.map(list =>
+                                <Col >
+                                    <Card className="clickable" onClick={() => {this.goToList(list.listId)}}>
+                                        <CardHeader>{list.listName}</CardHeader>
+                                        <CardBody>
+                                            <CardTitle><Button className="btn btn-warning" type="button"
                                             onClick={() => this.removeList(list)}>
                                             Remove
-                                        </Button>
-                                    </td>
-                                </tr>
-                            )
+                                        </Button></CardTitle>
+                                        </CardBody>
+                                    </Card>
+                                </Col>)
                         }
-                    </tbody>
-                </table>
+                    </Row>
+                </Container>
             </div>
         )
     }
