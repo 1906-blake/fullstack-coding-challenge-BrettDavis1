@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button } from 'reactstrap';
 import { environment } from '../../environment';
 import { GroceryList } from '../../models/groceryList';
+import { RouteComponentProps } from 'react-router';
 
 
 interface IState {
@@ -9,7 +10,7 @@ interface IState {
     deleteList: GroceryList
 }
 
-export default class GetGroceryList extends Component<{}, IState> {
+export default class GetGroceryList extends Component<RouteComponentProps, IState> {
     constructor(props: any) {
         super(props);
         this.state = {
@@ -43,7 +44,8 @@ export default class GetGroceryList extends Component<{}, IState> {
     }
 
     goToList = (groceryListId: Number) => {
-        localStorage.setItem("groceryListId", ""+groceryListId)
+        localStorage.setItem("groceryListId", ""+groceryListId);
+        this.props.history.push("items");
     }
 
     render() {
@@ -61,7 +63,7 @@ export default class GetGroceryList extends Component<{}, IState> {
                         {
                             lists.map(list =>
                                 <tr key={'listId-' + list.listId}>
-                                    <td>{list.listName}</td>
+                                    <td onClick={() => {this.goToList(list.listId)}}>{list.listName}</td>
                                     <td>
                                         <Button className="btn btn-warning" type="button"
                                             onClick={() => this.removeList(list)}>
