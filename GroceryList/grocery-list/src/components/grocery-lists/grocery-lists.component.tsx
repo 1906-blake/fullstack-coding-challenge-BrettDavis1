@@ -4,7 +4,7 @@ import { environment } from '../../environment';
 import { GroceryList } from '../../models/groceryList';
 import { RouteComponentProps } from 'react-router';
 import { listClient } from '../../axios/list.client.component';
-import { FaArrowCircleLeft, FaArrowCircleRight } from 'react-icons/fa';
+import { FaArrowCircleLeft, FaArrowCircleRight, FaLiraSign } from 'react-icons/fa';
 
 
 interface IState {
@@ -153,16 +153,19 @@ export default class GetGroceryList extends Component<RouteComponentProps, IStat
                             this.state.groceryLists.map(list =>
                                 <Col >
                                     <Card className="clickable" onClick={() => {this.goToList(list.listId)}}>
-                                        <CardHeader>Name:</CardHeader>
+                                        <CardHeader>{list.listName}</CardHeader>
                                         <CardBody>
-                                            <CardTitle>{list.listName} </CardTitle>
+                                            <CardTitle><Button className="btn btn-warning" type="button"
+                                            onClick={() => this.removeList(list)}>
+                                            Remove
+                                        </Button></CardTitle>
                                         </CardBody>
                                     </Card>
                                 </Col>)
                         }
                     </Row>
                 </Container>
-                {/* <table className="table table-striped table-light">
+                <table className="table table-striped table-light">
                     <thead className="fr-thead">
                         <tr>
                             <th scope="col">Name</th>
@@ -184,7 +187,7 @@ export default class GetGroceryList extends Component<RouteComponentProps, IStat
                             )
                         }
                     </tbody>
-                </table> */}
+                </table>
             </div>
         )
     }
