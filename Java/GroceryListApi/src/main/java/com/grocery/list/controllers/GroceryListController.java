@@ -27,19 +27,19 @@ public class GroceryListController {
 	}
 	
 	@PostMapping
-	private GroceryList save(@RequestBody GroceryList gl) {
+	public GroceryList save(@RequestBody GroceryList gl) {
 		return gls.save(gl);
 	}
 	@PostMapping("/{id}/items")
-	private GroceryList addItem(@PathVariable int id, @RequestBody GroceryItem item) {
+	public GroceryList addItem(@PathVariable int id, @RequestBody GroceryItem item) {
 		return gls.addItem(id, item);
 	}
 	@DeleteMapping("/{id}/items/{itemId}")
-	private GroceryList deleteItem(@PathVariable int id, @PathVariable int itemId) {
+	public GroceryList deleteItem(@PathVariable int id, @PathVariable int itemId) {
 		return gls.deleteItem(id, itemId);
 	}
 	@DeleteMapping()
-	private GroceryList deleteList(@RequestBody GroceryList list) {
+	public GroceryList deleteList(@RequestBody GroceryList list) {
 		return gls.deleteList(list);
 	}
 	
