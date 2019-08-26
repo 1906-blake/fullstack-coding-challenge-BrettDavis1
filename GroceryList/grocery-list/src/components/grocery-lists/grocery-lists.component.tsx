@@ -1,66 +1,70 @@
 import React, { Component } from 'react';
 import { Button } from 'reactstrap';
 import { environment } from '../../environment';
-import { GroceryItem } from '../../models/groceryItem';
+import { GroceryList } from '../../models/groceryList';
 
 
 interface IState {
-    groceryItems: GroceryItem[]
+    groceryLists: GroceryList[],
+    deleteList: GroceryList
 }
 
-export default class GetGroceryItems extends Component<{}, IState> {
+export default class GetGroceryList extends Component<{}, IState> {
     constructor(props: any) {
         super(props);
         this.state = {
-            groceryItems: []
+            groceryLists: [],
+            deleteList: new GroceryList()
         };
     }
 
     async componentDidMount() {
-        this.getGroceryItems();
+        this.getGroceryLists();
     };
-    getGroceryItems = async () => {
-        const resp = await fetch(environment.context + '/grocery-item/' + localStorage.getItem('groceryListId'), {
+    getGroceryLists = async () => {
+        const resp = await fetch(environment.context + '/grocery-lists/', {
             credentials: 'include'
         });
-        const itemsFromServer = await resp.json();
+        const listsFromServer = await resp.json();
         this.setState({
-            groceryItems: itemsFromServer
+            groceryLists: listsFromServer
         });
     }
 
-    removeItem = async (itemId: Number) => {
-        const resp = await fetch(environment.context + '/grocery-lists/' + localStorage.getItem('groceryListId') +
-         '/items/' + itemId, {
+    removeList = async (deleteList: GroceryList) => {
+        const resp = await fetch(environment.context + '/grocery-lists', {
             method: 'DELETE',
             credentials: 'include',
+            body: JSON.stringify(deleteList),
             headers: {
                 'content-type': 'application/json'
             }
         });
     }
 
+    goToList = (groceryListId: Number) => {
+        localStorage.setItem("groceryListId", ""+groceryListId)
+    }
+
     render() {
-        const items = this.state.groceryItems;
+        const lists = this.state.groceryLists;
         return (
             <div>
                 <table className="table table-striped table-light">
                     <thead className="fr-thead">
                         <tr>
-                            <th scope="col">Item</th>
-                            <th scope="col">Type</th>
+                            <th scope="col">Name</th>
                             <th scope="col">Remove</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            items.map(item =>
-                                <tr key={'itemId-' + item.itemId}>
-                                    <td>{item.item}</td>
-                                    <td>{item.itemType}</td>
+                            lists.map(list =>
+                                <tr key={'listId-' + list.listId}>
+                                    <td>{list.listName}</td>
                                     <td>
                                         <Button className="btn btn-warning" type="button"
-                                            onClick={() => this.removeItem(item.list.listId)}>
+                                            onClick={() => this.removeList(list)}>
                                             Remove
                                         </Button>
                                     </td>

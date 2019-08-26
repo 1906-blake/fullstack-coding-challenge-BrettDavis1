@@ -14,7 +14,7 @@ public class GroceryItemService {
 	private GroceryItemRepo gir;
 	
 	public List<GroceryItem> findByList(int id) {
-		return gir.findByList(id);
+		return gir.findByListListId(id);
 	}
 
 }

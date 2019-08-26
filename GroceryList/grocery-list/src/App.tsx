@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.scss';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import GetGroceryItems from './components/grocery-list/grocery-list.component';
+import GetGroceryList from './components/grocery-lists/grocery-lists.component';
 
 const App: React.FC = () => {
   return (
@@ -9,8 +11,8 @@ const App: React.FC = () => {
         {/* <NavComponent /> */}
         {/* The switch will only render the first route to match */}
         <Switch>
-          <Route></Route>
-          {/* <Route path="/movies" component={GetMovies} /> */}
+          <Route path="/items" component={GetGroceryItems} />
+          <Route path="/lists" component={GetGroceryList} />
         </Switch>
       </div>
     </BrowserRouter>

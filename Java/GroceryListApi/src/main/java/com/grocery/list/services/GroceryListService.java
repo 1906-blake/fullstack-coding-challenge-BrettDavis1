@@ -24,7 +24,7 @@ public class GroceryListService {
 		return glr.saveAndFlush(gl);
 	}
 	public GroceryList addItem(int id, GroceryItem item) {
-		item.setList(id);
+		item.setList(glr.getOne(id));
 		gir.saveAndFlush(item);
 		return glr.getOne(id);
 	}
