@@ -1,0 +1,229 @@
+$tan: #949484;
+$burgundy: #800303;
+$white: #fff;
+$black: #000;
+$navy: #1d2c59;
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/*****************************
+  NAV
+*****************************/
+.movie-logo {
+  width: auto;
+  height: 2em;
+  margin-right: 2em;
+}
+
+.margin-nav {
+  margin-right: 2em
+}
+
+.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+  color: rgba(0,0,0,.7);
+}
+
+.navbar-expand-md .navbar-nav .nav-link {
+  padding-right: .75rem !important;
+  padding-left: .75rem !important;
+}
+
+.bg-light {
+  background-color: $tan !important;
+}
+
+nav {
+  border-bottom: 1px solid $tan !important;
+  margin-bottom: 20px;
+  -webkit-box-shadow: 1px -12px 28px -1px rgba(0, 0, 0, 0.87);
+  -moz-box-shadow: 1px -12px 28px -1px rgba(0, 0, 0, 0.87);
+  box-shadow: 1px -12px 28px -1px rgba(0, 0, 0, 0.87);
+}
+
+#examples-dropdown {
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  background-color: $tan;
+  color: #fff;
+}
+.dropdown-item:hover {
+  background-color: $burgundy;
+}
+.dropdown-item:active {
+background-color: #f5a716;
+}
+
+/********************************************************
+Sign In
+*******************************************************/
+.sign-in-card {
+  margin: 0 auto;
+  margin-top: 6em;
+  width: 25em;
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+
+.form-signin {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.log-up {
+  width: 19em;
+  margin-bottom: 1em;
+  padding: .5em;
+  border-radius: .4em
+}
+
+/*****************************
+  Usser Profile
+*****************************/
+.user-profile {
+  font-style: oblique;
+  font-weight: bold;
+  color: #f7f6f5;
+}
+
+.user-profile p { 
+  color: #000;
+  margin-right: 2em;
+  text-align: center;
+} 
+
+.user-box {
+  margin: 0 auto;
+  margin-right: 3em;
+  margin-left: 3em;
+}
+
+.user-box h3 {
+  color: $black;
+}
+
+.user-credentials {
+  margin-left: 2.5em;
+}
+
+/*****************************
+  Favorite Movies
+*****************************/
+.fav-movies-table {
+  margin: 2em;
+  // border: .3em;
+}
+
+.fm-thead {
+  font-size: 14px;
+  background-color: $navy;
+  color: $white;
+}
+
+.fm-tbody,
+.fol-tbody {
+  font-size: 16px;
+}
+
+/*****************************
+  Following
+*****************************/
+.following-card {
+  margin: 4em;
+  padding-top: 1em;
+  padding-bottom: 2em;
+  background-color: $tan;
+}
+
+.user-followers {
+  margin: 2em;
+  padding-top: 1em;
+  background-color: $tan;
+  border: 1px solid $black;
+}
+
+.user-followers h3,
+.fav-movies-table h3 {
+  color: #000;
+}
+
+.following-table {
+  margin: 0 auto;
+}
+
+.fol-thead,
+.fr-thead {
+  font-size: 14px;
+  background-color: $burgundy;
+  color: $white;
+}
+
+/*****************************
+  Get Users
+*****************************/
+.find-users {
+  margin: 3em;
+}
+
+.find-input {
+  margin: 0 auto;
+  margin-bottom: 2em;
+}
+
+.user-post-form {
+  margin: 3em;
+  margin-right: 15em;
+  margin-left: 15em;
+  padding-top: 1em;
+  padding-bottom: 2em;
+  border-radius: .5em;
+  background-color:$navy;
+  color: $white;
+}
+
+.form-control {
+  margin: 0 auto;
+  width: 25em;
+}
+
+.post-btn {
+  margin-top: 1em;
+}
+
+/*****************************
+  Recommended
+*****************************/
+.recommended {
+  margin: 4em;
+}
+
+
+
+
+.displaynull {
+  display: none;
+}
+.displayyes {
+  display: table-cell;
+}
