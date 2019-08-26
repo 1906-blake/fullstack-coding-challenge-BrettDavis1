@@ -4,7 +4,7 @@ import { environment } from '../../environment';
 import { GroceryList } from '../../models/groceryList';
 import { RouteComponentProps } from 'react-router';
 import { listClient } from '../../axios/list.client.component';
-// import { FaArrowCircleLeft, FaArrowCircleRight } from 'react' //react-icons/fa';
+import { FaArrowCircleLeft, FaArrowCircleRight } from 'react-icons/fa';
 
 
 interface IState {
@@ -117,25 +117,25 @@ export default class GetGroceryList extends Component<RouteComponentProps, IStat
                     <Container>
                     <Row>
                         <Col>
-                            <i className="fas fa-arrow-circle-left clickable"
+                            <FaArrowCircleLeft className="clickable"
                                 onClick={() => this.getGroceryListsPages(+this.state.page-1)} />
                         </Col>
                         <Col>
                             {+this.state.page + 1} of {this.state.totalPages}
                         </Col>
                         <Col>
-                            <i className="fas fa-arrow-circle-right clickable" 
+                            <FaArrowCircleRight className="clickable" 
                                 onClick={() => this.getGroceryListsPages(+this.state.page+1)} />
                         </Col>
                     </Row>
                     <Row>
                         {
-                            this.state.groceryLists.map(ele =>
-                                <Col>
-                                    <Card>
-                                        <CardHeader>List Name</CardHeader>
+                            this.state.groceryLists.map(list =>
+                                <Col >
+                                    <Card className="clickable" onClick={() => {this.goToList(list.listId)}}>
+                                        <CardHeader>Name:</CardHeader>
                                         <CardBody>
-                                            <CardTitle>{ele.listName} </CardTitle>
+                                            <CardTitle>{list.listName} </CardTitle>
                                         </CardBody>
                                     </Card>
                                 </Col>)
