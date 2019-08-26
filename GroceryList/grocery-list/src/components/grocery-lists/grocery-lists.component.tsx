@@ -102,18 +102,39 @@ export default class GetGroceryList extends Component<RouteComponentProps, IStat
         const lists = this.state.groceryLists;
         return (
             <div>
-                <form id="list-form" className="list-form" onSubmit={this.submit}>
-                    <h5>Add Item to List</h5>
+                <div>
+                <Button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                Create a List
+                </Button>
+                <div className="modal fade" id="exampleModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div className="modal-dialog" role="document">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        <div className="modal-body">
+                        <form id="list-form" className="list-form" onSubmit={this.submit}>
+                    <h5>Create a List</h5>
                     <div className = "col-xs-2 textinput">
-                        <label htmlFor="inputitem" className="text-only">Item</label>
-                        <input type="text" id="inputitem"
+                        <label htmlFor="inputlist" className="text-only">List Name</label>
+                        <input type="text" id="inputlist"
                             name="listName"
                             className="form-control"
                             onChange={this.handleChange}
                             value={this.state.createList.listName} required />
                     </div>
-                    <Button className="post-btn btn-success" type="submit">Add Item</Button>
                     </form>
+                        </div>
+                        <div className="modal-footer">
+                            <Button type="submit" form="list-form">Create List</Button>
+                            <Button type="button" className="btn btn-secondary" data-dismiss="modal">Close</Button>
+                        </div>
+                        </div></div>
+                    </div>
+                </div>
                     <Container>
                     <Row>
                         <Col>
