@@ -33,8 +33,11 @@ public class GroceryListService {
 		return glr.getOne(id);
 	}
 	public GroceryList deleteList(GroceryList list) {
+		List<GroceryItem> items = gir.findByListListId(list.getListId());
+		for(int i = 0; i < items.size(); i++) {
+			gir.deleteById(items.get(i).getItemId());
+		}
 		glr.deleteById(list.getListId());
 		return list;
 	}
-
 }
