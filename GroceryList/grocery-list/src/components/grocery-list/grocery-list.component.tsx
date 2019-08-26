@@ -92,14 +92,13 @@ export default class GetGroceryItems extends Component<{}, IState> {
                     <div className="modal-dialog" role="document">
                         <div className="modal-content">
                             <div className="modal-header">
-                                <h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <h5 className="modal-title" id="exampleModalLabel">Add Item to List</h5>
                                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                                 </button>
                         </div>
                         <div className="modal-body">
                             <form id="item-form" className="item-form" onSubmit={this.submit}>
-                            <h5>Add Item to List</h5>
                             <div className = "col-xs-2 textinput">
                                 <label htmlFor="inputitem" className="text-only">Item</label>
                                 <input type="text" id="inputitem"
