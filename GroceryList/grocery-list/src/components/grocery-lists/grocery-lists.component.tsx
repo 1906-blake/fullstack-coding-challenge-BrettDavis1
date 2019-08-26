@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { Button } from 'reactstrap';
+import { Button, Container, Row, Col, Card, CardHeader, CardBody, CardTitle, CardText } from 'reactstrap';
 import { environment } from '../../environment';
 import { GroceryList } from '../../models/groceryList';
 import { RouteComponentProps } from 'react-router';
+import { listClient } from '../../axios/list.client.component';
+// import { FaArrowCircleLeft, FaArrowCircleRight } from 'react' //react-icons/fa';
 
 
 interface IState {
@@ -11,7 +13,9 @@ interface IState {
     createList: {
         listId: Number,
         listName: string
-    }
+    },
+    page: Number,
+    totalPages: Number
 }
 
 export default class GetGroceryList extends Component<RouteComponentProps, IState> {
@@ -23,13 +27,25 @@ export default class GetGroceryList extends Component<RouteComponentProps, IStat
             createList: {
                 listId: 0,
                 listName: ''
-            }
+            },
+            page: 0,
+            totalPages: 0
         };
     }
 
     async componentDidMount() {
-        this.getGroceryLists();
+        this.getGroceryListsPages(0);
     };
+
+    getGroceryListsPages = async (page: Number) => {
+        let resp = await listClient.get(`/grocery-lists/pages?page=${page}`)
+        this.setState({
+            groceryLists: resp.data.content,
+            page,
+            totalPages: resp.data.totalPages
+        });
+    }
+
     getGroceryLists = async () => {
         const resp = await fetch(environment.context + '/grocery-lists/', {
             credentials: 'include'
@@ -98,7 +114,35 @@ export default class GetGroceryList extends Component<RouteComponentProps, IStat
                     </div>
                     <Button className="post-btn btn-success" type="submit">Add Item</Button>
                     </form>
-                <table className="table table-striped table-light">
+                    <Container>
+                    <Row>
+                        <Col>
+                            <i className="fas fa-arrow-circle-left clickable"
+                                onClick={() => this.getGroceryListsPages(+this.state.page-1)} />
+                        </Col>
+                        <Col>
+                            {+this.state.page + 1} of {this.state.totalPages}
+                        </Col>
+                        <Col>
+                            <i className="fas fa-arrow-circle-right clickable" 
+                                onClick={() => this.getGroceryListsPages(+this.state.page+1)} />
+                        </Col>
+                    </Row>
+                    <Row>
+                        {
+                            this.state.groceryLists.map(ele =>
+                                <Col>
+                                    <Card>
+                                        <CardHeader>List Name</CardHeader>
+                                        <CardBody>
+                                            <CardTitle>{ele.listName} </CardTitle>
+                                        </CardBody>
+                                    </Card>
+                                </Col>)
+                        }
+                    </Row>
+                </Container>
+                {/* <table className="table table-striped table-light">
                     <thead className="fr-thead">
                         <tr>
                             <th scope="col">Name</th>
@@ -120,7 +164,7 @@ export default class GetGroceryList extends Component<RouteComponentProps, IStat
                             )
                         }
                     </tbody>
-                </table>
+                </table> */}
             </div>
         )
     }
